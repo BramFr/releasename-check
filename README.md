@@ -1,5 +1,5 @@
-# releasename_match
-Match local filename with extenstion .mkv with external srrdb. If there is a match this script will rename the file.
+# releasename-check
+Match local filename (movie-realeasename.mkv) with external database like srrdb. If there is a match this script will rename the file.
 
 # Requirements
 ```
