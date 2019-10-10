@@ -120,10 +120,9 @@ def _main():
     
 
     for id in movies:
-    
+        print(f"File: {movies[id]['file_name']}")
         # Create / Check CRC 
         if not movies[id].get('crc_hash'):
-            print(f"File: {movies[id]['file_name']}")
             movies[id]['crc_hash'] = _crc_generate(movies[id])
             if _crc_create(movies[id], aggr['check_mode']):
                 print(f"CRC saved: {movies[id].get('crc_name')}")
