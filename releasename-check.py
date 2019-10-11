@@ -14,17 +14,15 @@ def _rename_file(movie_info, check_mode):
 
     if os.path.isfile(old_file) and not os.path.isfile(new_file):
         if not check_mode:
-            pass
             os.rename(old_file, new_file)
             os.rename(old_crc_file, new_crc_file)
             if os.path.isfile(new_file):
                 print(f'Old File: {old_file}')
                 print(f'New File: {new_file}')
                 return True
-            else:
-                print(f'Something goes wrong with file: {new_file}')
-                print(f'This program will stop, please fix the problem first.')
-                exit()
+            print(f'Something goes wrong with file: {new_file}')
+            print(f'This program will stop, please fix the problem first.')
+            exit()
     return True
   
 def _get_releasename_of_srrdb(movie_info):
@@ -42,8 +40,7 @@ def _crc_create(movie_info, check_mode):
             f.write(movie_info['crc_hash'])
 
         return True if os.path.isfile(movie_info['full_crc_path']) else False
-    else:
-        return True
+    return True
 
 def _crc_generate(movie_info):
     # Checkmode maken.
@@ -53,8 +50,7 @@ def _crc_generate(movie_info):
     if crc_okey:
         print(f'CRC Generated: {crc_hash}')
         return crc_hash
-    else:
-        return None
+    return None
 
 def _find_movies(fpath):
     movies = {}
@@ -74,7 +70,7 @@ def _find_movies(fpath):
                 movies[i]['crc_hash'] = _crc_file_exist(movies[i]['full_crc_path'], movies[i]['file_name'])
                 movies[i]['crc_name'] = movies[i]['release_name'] + '.crc'
                 
-                i = i + 1
+                i += 1
     return movies
 
 def _crc_file_exist(crc_path, crc_name):
@@ -137,6 +133,8 @@ def _main():
                     print(f'Rename file: Done')
             else:
                 print(f'No match found on srrdb')
+        else:
+            print(f'Already a match')
         
         print(f'-------------------------')
     
