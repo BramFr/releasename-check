@@ -48,8 +48,6 @@ def _crc_create(movie_info, check_mode):
 def _crc_generate(movie_info):
     # Checkmode maken.
     result_raw = subprocess.check_output(['cksfv', '-c', movie_info['full_path']], text=True)
-    # Test
-    # result_raw = subprocess.check_output(['cksfv', '-c', '/home/bram/Downloads/config'], text=True)
     crc_hash = result_raw.rstrip('\n')[-8:]
     crc_okey = re.search("[A-Z0-9]{8}$", crc_hash)
     if crc_okey:
